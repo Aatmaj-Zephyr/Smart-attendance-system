@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "qrcode": "^1.5.3",
+    "qrious": "^4.0.2",
+    "react-qr-code": "^2.0.12"
+  }
+}

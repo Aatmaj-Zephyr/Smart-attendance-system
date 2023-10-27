@@ -55,12 +55,28 @@ function AttendancePage({ onBack }) {
 }
 
 function QR({ onBack }) {
-  
+  const [qrValue, setQRValue] = useState("SRS" + Date.now());
+
+  useEffect(() => {
+    // Create an interval that updates the QR code value every 3 seconds
+    const interval = setInterval(() => {
+      setQRValue("SRS" + Date.now());
+    }, 3000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div>
-      <h1>QR Page</h1>
-      <QRCode value="hey" />
+    <div className="backQr">
+      <h1>QR code</h1>
+
+      <QRCode
+        value={qrValue}
+        style={{ height: "auto", maxWidth: "30%", width: "30%" }}
+      />
+
+      <br />
       <button onClick={onBack}>Back</button>
     </div>
   );

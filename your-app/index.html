@@ -1,33 +1,71 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>QR Code Scanner</title>
-  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+	<head>
+		<title> Somaiya Digital ID </title>
+		<link
+			rel="icon shortcut"
+			href="https://www.somaiya.edu/assets/university/img/svv-emblem.svg"
+			type="image/x-icon"
+			sizes="16x16"
+		/>
+		<link rel="stylesheet" href="styles.css" />
 
-</head>
-<body>
-  <style>
-    .button {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      align-self: center;
+		<link rel="manifest" href="./manifest.json" />     
+
+	</head>
+	<body clas="screen">
+		<div class="redMat">
+			<div class="darkRed"></div>
+		</div>
+		<div class="container">
+			<div class="Somaiyalogobox">
+				<img
+					class="Somaiyalogo"
+					src="https://www.somaiya.edu/assets/university/img/homepage/university-logo.svg"
+				/>
+			</div>
+			<div class="SomaiyaDigitalIDcardportal">Digital ID card portal</div>
+			<button
+				style="
+					position: absolute;
+					width: 255px;
+					height: 80px;
+					left: calc(50% - 255px / 2 - 1.5px);
+					top: calc(50% - 80px / 2 + 142px);
+				"
+				class="button"
+				onclick="goToAuth()"
+				id="loginButton"
+			>
+				<div class="buttontext">Log In</div>
+			</button>
+			<script>
+				function goToAuth() {
+					window.location.href = "./auth.html";
+					registerSW();
+				}
+				registerSW();
+				async function registerSW() {
+    console.log('Registering service worker for app');
+
+
+    try {
+        await navigator
+            .serviceWorker.register("/Mini-project/serviceWorker.js")
+
+
+
+            .then(function (registration) {
+                console.log('Service worker (app) successfully registered.');
+                console.log(registration.scope);
+
+            })
     }
-    </style>
-    <div style=" display: flex;align-items: center;">
-    <button class="button" id="scanButton">SCAN</button>
-    </div>
-  
-  <div id="reader"></div>
- 
-  <script src="./main.js" type="text/javascript"></script>
-   <!-- place js file here to endure it loads after loading>
-</body>
+    catch (e) {
+        console.log('SW registration for app failed');
+        console.log(e.message);
+    }
+}
+			</script>
+		</div>
+	</body>
 </html>

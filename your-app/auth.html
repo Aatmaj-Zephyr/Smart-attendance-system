@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <link rel="icon shortcut" href="https://www.somaiya.edu/assets/university/img/svv-emblem.svg" type="image/x-icon" sizes="16x16">
+        <link rel="stylesheet" href="styles.css">
+        <title> Somaiya Digital ID </title>
+        <link rel="manifest" href="./manifest.json" />   
+
+
+    </head>
+    <body clas="screen">
+        
+        <div class="redMat">
+            <div class="darkRed"></div>
+        
+        </div>
+        <div class="container">
+            <img class="Somaiyalogo" src="https://www.somaiya.edu/assets/university/img/homepage/university-logo.svg">
+            <div class="text" style="/* SVV net ID */ position: absolute; left: 5.37%; right: 8.05%; top: 22.19%; bottom: 69.95%;">
+             SVV Net ID
+            </div>
+           <input class="textbox" id="username" style="position: absolute;left: 20%;top: 33.73%;bottom: 55.89%;" required>
+
+            </input>
+            <div class="text" style="position: absolute; left: 5.37%; right: 7.72%; top: 49.93%; bottom: 42.21%;">
+                Password
+               </div>
+              <input class="textbox" type="password" id="password" style="position: absolute; left: 20%; top: 61.47%; bottom: 28.15%;" required>
+   
+               </input>
+               <div class="text" style="font-size:25;position: absolute;left: 24.16%;right: 25.84%;top: 70%;bottom: 12%; cursor:pointer" onclick="forgot()">
+               Forgot Password?
+               </div>
+
+               <button style="position: absolute;width: 255px;height: 80px;left: calc(50% - 255px/2 - 1.5px);top: calc(70% - 80px/2 + 142px); " class="button" onclick="Login()" id="loginButton">
+                   <div class="buttontext" >
+                       Continue
+                   </div>
+               </button>
+
+               
+        </div>
+       <script>
+
+
+
+  
+  function Login(){
+            console.log("click");
+            var username = document.getElementById('username').value;
+
+            var password = document.getElementById('password').value;
+
+            //check username and password validity
+
+            //if valid then go to generate page.
+            localStorage.setItem("Authenticated", "Partial");
+            localStorage.setItem("mail",username+"@somaiya.edu");
+            window.location.href = "./twoFactorAuth.html"; //redirect to two factor auth page
+            //if two factor authentication performed for the first time then go to generate page
+            //localStorage.setItem("Authenticated", "true");
+          
+}
+
+function forgot(){
+    window.location.href = "https://myaccount.somaiya.edu/#/login";
+   
+}
+       </script>
+       <script>
+        //prevent opening of inspect element.
+        const devtools = {
+        isOpen: false,
+        orientation: undefined,
+    };
+    
+    const threshold = 170;
+    
+    const emitEvent = (isOpen, orientation) => {
+        globalThis.dispatchEvent(new globalThis.CustomEvent('devtoolschange', {
+            detail: {
+                isOpen,
+                orientation,
+            },
+        }));
+    };
+    setInterval(function () {
+                    // your code goes here...
+                    if(check()==true){
+                        window.location.href = "https://en.wikipedia.org/wiki/Gorilla";//inspect element opened
+    
+                    }
+                    console.log(check())
+                
+                }, 2 * 1000); // 60 * 1000 milsec
+    
+    function check(){
+        const emitEvents = true
+        const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
+        const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
+        const orientation = widthThreshold ? 'vertical' : 'horizontal';
+    
+        if (
+            !(heightThreshold && widthThreshold)
+            && ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)
+        ) {
+            if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
+                emitEvent(true, orientation);
+            }
+    
+            devtools.isOpen = true;
+            return true;
+            devtools.orientation = orientation;
+        } else {
+            if (devtools.isOpen && emitEvents) {
+                emitEvent(false, undefined);
+            }
+    
+            devtools.isOpen = false;
+            devtools.orientation = undefined;
+            return false;
+        }
+    };
+
+    
+    </script>
+     </body>
+</html>

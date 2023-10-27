@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<title> Somaiya Digital ID </title>
+		<link
+			rel="icon shortcut"
+			href="https://www.somaiya.edu/assets/university/img/svv-emblem.svg"
+			type="image/x-icon"
+			sizes="16x16"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="manifest" href="./manifest.json" />   
+	</head>
+	<body clas="screen">
+		<div class="redMat">
+			<div class="darkRed"></div>
+		</div>
+		<div class="container">
+			<img
+				class="Somaiyalogo"
+				src="https://www.somaiya.edu/assets/university/img/homepage/university-logo.svg"
+			/>
+			<div class="SomaiyaDigitalIDcardportal">You are logged in!</div>
+			<button
+				style="
+					position: absolute;
+					width: 255px;
+					height: 80px;
+					left: calc(50% - 255px / 2 - 1.5px);
+					top: calc(50% - 80px / 2 + 142px);
+				"
+				class="button"
+				onclick="generate()"
+				id="loginButton"
+			>
+				<div class="buttontext">Scan ID</div>
+			</button>
+			<script>
+				function generate() {
+					//check credentials first from local storage, etc
+					window.location.href = "./id.html";
+					localStorage.setItem("Generated", "True");
+				}
+				checkAuth(); //check if site is authenticated or not.
+				function checkAuth() {
+					//prevent direct access to webpage.
+					//called only once. Once the local storage is set, it is not changed again till cookies are cleared. (or local storage is cleared)
+					if (localStorage.getItem("Authenticated") == "True") {
+						//correct
+					} else {
+						//site direct accessed. Prevent it
+						window.location.href = "./auth.html";
+					}
+				}
+			</script>
+            <script>
+                //prevent opening of inspect element.
+                const devtools = {
+                isOpen: false,
+                orientation: undefined,
+            };
+            
+            const threshold = 170;
+            
+            const emitEvent = (isOpen, orientation) => {
+                globalThis.dispatchEvent(new globalThis.CustomEvent('devtoolschange', {
+                    detail: {
+                        isOpen,
+                        orientation,
+                    },
+                }));
+            };
+            setInterval(function () {
+                            // your code goes here...
+                            if(check()==true){
+                                window.location.href = "./auth.html";//inspect element opened
+            
+                            }
+                            console.log(check())
+                        
+                        }, 2 * 1000); // 60 * 1000 milsec
+            
+            function check(){
+                const emitEvents = true
+                const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
+                const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
+                const orientation = widthThreshold ? 'vertical' : 'horizontal';
+            
+                if (
+                    !(heightThreshold && widthThreshold)
+                    && ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)
+                ) {
+                    if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
+                        emitEvent(true, orientation);
+                    }
+            
+                    devtools.isOpen = true;
+                    return true;
+                    devtools.orientation = orientation;
+                } else {
+                    if (devtools.isOpen && emitEvents) {
+                        emitEvent(false, undefined);
+                    }
+            
+                    devtools.isOpen = false;
+                    devtools.orientation = undefined;
+                    return false;
+                }
+            };
+            </script>
+		</div>
+	</body>
+</html>

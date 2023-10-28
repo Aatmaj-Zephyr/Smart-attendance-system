@@ -55,6 +55,25 @@ function AttendancePage({ onBack }) {
 }
 
 function QR({ onBack }) {
+  const handleClick = async () => {
+    console.log("downloading")
+    // Add code to send a request to run your Node.js script here
+    // You can use Axios, fetch, or any HTTP client library to send a request.
+    // For example, using fetch:
+    try {
+      const response = await fetch('http://localhost:3000/run-node-script', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        console.log('Node.js script executed successfully.');
+      } else {
+        console.error('Error running Node.js script.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
   const [qrValue, setQRValue] = useState("SRS" + Date.now());
 
   useEffect(() => {
@@ -78,6 +97,7 @@ function QR({ onBack }) {
 
       <br />
       <button onClick={onBack}>Back</button>
+      <button onClick={handleClick}>download</button>
 
     </div>
   );

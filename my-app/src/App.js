@@ -78,6 +78,7 @@ function QR({ onBack }) {
 
       <br />
       <button onClick={onBack}>Back</button>
+
     </div>
   );
 }

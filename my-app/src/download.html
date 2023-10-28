@@ -1,0 +1,30 @@
+<!-- Include the Firebase JavaScript SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js"></script>
+
+<!-- Initialize Firebase with your project configuration -->
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- JavaScript code to read data from the "SRS" node -->
+<script>
+  const database = firebase.database();
+  const srsRef = database.ref('SRS');
+
+  srsRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    // Do something with the data, e.g., console.log it
+    console.log(data);
+  });
+</script>

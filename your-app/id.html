@@ -7,6 +7,7 @@
 			type="image/x-icon"
 			sizes="16x16"
 		/>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
 
 		<link rel="manifest" href="./manifest.json" />   
@@ -21,7 +22,6 @@
 	<body>
 		
 			<div style=" display: flex;align-items: center;">
-			<button class="button" id="scanButton">SCAN</button>
 			</div>
 		  
 		  <div id="reader"></div>
@@ -75,7 +75,6 @@ function onScanSuccess(decodedText, decodedResult) {
     console.warn(`Code scan error = ${error}`);
   }
   
-  document.getElementById("scanButton").addEventListener("click", function () {
 
     // Ensure that html5QrcodeScanner is initialized before calling render
     if (html5QrcodeScanner) {
@@ -84,7 +83,7 @@ function onScanSuccess(decodedText, decodedResult) {
     else{
         console.log("Error htmlqrcodeScanner is not initialized");
     }
-  });
+
   
 
 

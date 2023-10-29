@@ -28,6 +28,14 @@ async function run() {
       if (data) {
         // Insert data into MongoDB
         insertData(data);
+        //delete from firebase
+        ref.remove()
+          .then(() => {
+            console.log("Data removed from Firebase");
+          })
+          .catch((error) => {
+            console.error("Error removing data from Firebase:", error);
+          });
       } else {
         console.log("No data found in Firebase node.");
       }

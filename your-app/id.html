@@ -76,13 +76,7 @@ function onScanSuccess(decodedText, decodedResult) {
   }
   
 
-    // Ensure that html5QrcodeScanner is initialized before calling render
-    if (html5QrcodeScanner) {
-      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    }
-    else{
-        console.log("Error htmlqrcodeScanner is not initialized");
-    }
+
 
   
 
@@ -94,6 +88,13 @@ function onScanSuccess(decodedText, decodedResult) {
         { fps: 15, qrbox: {width: 400, height: 400} , facingmode:"environment"},
         /* verbose= */ false
       );
+          // Ensure that html5QrcodeScanner is initialized before calling render
+    if (html5QrcodeScanner) {
+      html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    }
+    else{
+        console.log("Error htmlqrcodeScanner is not initialized");
+    }
     
   }
 	   </script>

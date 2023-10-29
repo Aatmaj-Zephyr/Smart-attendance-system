@@ -64,7 +64,9 @@ function onScanSuccess(decodedText, decodedResult) {
 
     messagesRef.set(data);
     
-   window.location.href="./success.html"
+    setInterval(function () {window.location.href="./success.html"}, 3000);
+
+   
     
 
   }

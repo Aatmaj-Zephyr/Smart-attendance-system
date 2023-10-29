@@ -79,7 +79,7 @@ function QR({ onBack }) {
   useEffect(() => {
     // Create an interval that updates the QR code value every 3 seconds
     const interval = setInterval(() => {
-      setQRValue("SRS" + Date.now());
+      setQRValue("SRS+" + Date.now());
     }, 3000);
 
     // Clear the interval when the component unmounts
